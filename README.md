@@ -6,7 +6,7 @@ Manage contacts and send in-app messages through Intercom from your Xano backend
 
 | Function | Description |
 | --- | --- |
-| `intercom_create_contact` | Creates or updates a contact or lead in Intercom. |
+| `intercom_create_contact` | Creates a contact (user or lead) in Intercom. |
 | `intercom_send_message` | Sends an in-app message to a user in Intercom. |
 
 ## Install
@@ -66,7 +66,7 @@ function.run "intercom_create_contact" {
 
 ### `intercom_create_contact`
 
-Adds a new contact to your Intercom workspace with details such as email, name, and custom attributes. If a contact with the same email already exists, it updates the existing record. Ideal for syncing user sign-ups or profile changes from your application into Intercom automatically.
+Adds a new contact (user or lead) to your Intercom workspace with details such as email, name, and custom attributes. Note: this creates a contact — it does not look up or merge an existing one by email, and Intercom returns a conflict if the email already exists. Ideal for capturing user sign-ups from your application into Intercom.
 
 ### `intercom_send_message`
 

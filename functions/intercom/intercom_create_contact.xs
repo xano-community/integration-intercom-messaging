@@ -1,5 +1,5 @@
 function "intercom_create_contact" {
-  description = "Create or update a contact/lead in Intercom"
+  description = "Create a new contact (user or lead) in Intercom. Note: this creates a contact; it does not look up or merge an existing one by email."
   input {
     text role?="user" { description = "Contact role: user or lead" }
     email email? { description = "Contact email address" }
@@ -32,7 +32,7 @@ function "intercom_create_contact" {
 
     precondition ($api_result.response.status == 200) {
       error_type = "standard"
-      error = "Intercom API error: " ~ $api_result.response.result
+      error = "Intercom API error: " ~ ($api_result.response.result|json_encode)
     }
 
     var $result { value = $api_result.response.result }
